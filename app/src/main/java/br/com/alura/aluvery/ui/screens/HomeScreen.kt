@@ -1,14 +1,14 @@
 package br.com.alura.aluvery.ui.screens
 
-import android.graphics.drawable.shapes.Shape
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
@@ -21,17 +21,32 @@ import br.com.alura.aluvery.sampledata.sampleSections
 import br.com.alura.aluvery.ui.components.CardProductItem
 import br.com.alura.aluvery.ui.components.ProductsSection
 import br.com.alura.aluvery.ui.theme.AluveryTheme
-import java.math.BigDecimal
-import kotlin.random.Random
 
 @Composable
 fun HomeScreen(
-    sections: Map<String, List<Product>>
+    sections: Map<String, List<Product>>,
+    searchText: String = ""
 ) {
-
     Column {
+        var text by remember { mutableStateOf(searchText) }
 
-        var text by remember { mutableStateOf("${Random.nextInt()}") }
+        val searchedProduct = remember(text) { //este codigo so vai executar uma unica vez
+            if (text.isNotBlank()) {
+                sampleProducts.filter { product ->
+                    product.name.contains(
+                        text,
+                        ignoreCase = true,
+                    )
+                            || product.description?.contains(
+                        text,
+                        ignoreCase = true,
+                    ) ?: false
+                }
+            } else {
+                emptyList()
+            }
+        }
+
         OutlinedTextField(
             value = text,
             onValueChange = { newValue ->
@@ -47,7 +62,7 @@ fun HomeScreen(
                 Icon(Icons.Default.Search, contentDescription = "Filter your option")
             },
             label = {
-                    Text("Produto")
+                Text("Produto")
             },
             placeholder = {
                 Text(text = "What do you find ?")
@@ -60,24 +75,27 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(bottom = 16.dp)
         ) {
-            items(sampleProducts){ p->
-             CardProductItem(
-                 product = p,
-                 Modifier.padding(horizontal = 16.dp),
-                 expanded = true,
+            if (text.isBlank()) {
+                for (section in sections) {
+                    val title = section.key
+                    val products = section.value
+                    item {
+                        ProductsSection(
+                            title = title,
+                            products = products
+                        )
+                    }
+                }
+            } else {
+                items(searchedProduct) { p ->
+                    CardProductItem(
+                        product = p,
+                        Modifier.padding(horizontal = 16.dp),
+                        expanded = true,
+                    )
+                }
 
-             )
             }
-//            for (section in sections) {
-//                val title = section.key
-//                val products = section.value
-//                item {
-//                    ProductsSection(
-//                        title = title,
-//                        products = products
-//                    )
-//                }
-//            }
         }
     }
 }
@@ -88,6 +106,16 @@ private fun HomeScreenPreview() {
     AluveryTheme {
         Surface {
             HomeScreen(sampleSections)
+        }
+    }
+}
+
+@Preview
+@Composable
+fun HomeScreenWithSearchText() {
+    AluveryTheme {
+        Surface {
+            HomeScreen(sampleSections, searchText = "a")
         }
     }
 }

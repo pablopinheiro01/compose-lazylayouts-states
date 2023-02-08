@@ -24,9 +24,10 @@ class MainActivity : ComponentActivity() {
 fun App() {
     AluveryTheme {
         Surface {
-//            HomeScreen(
-//                sampleSections
-//            )
+            HomeScreen(
+                sections = sampleSections,
+                searchText = ""
+            )
 //            AllProductsScreen()
         }
     }
