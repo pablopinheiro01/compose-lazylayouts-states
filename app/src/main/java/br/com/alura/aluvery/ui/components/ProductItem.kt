@@ -1,6 +1,5 @@
 package br.com.alura.aluvery.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -26,23 +25,25 @@ import br.com.alura.aluvery.extensions.toBrazilianCurrency
 import br.com.alura.aluvery.model.Product
 import br.com.alura.aluvery.ui.theme.AluveryTheme
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import java.math.BigDecimal
 
 @Composable
-fun ProductItem(product: Product) {
+fun ProductItem(
+    product: Product,
+    modifier: Modifier = Modifier,
+) {
     Surface(
         shape = RoundedCornerShape(15.dp),
         elevation = 4.dp
     ) {
         Column(
-            Modifier
+            modifier
                 .heightIn(250.dp, 300.dp)
                 .width(200.dp)
         ) {
             val imageSize = 100.dp
             Box(
-                modifier = Modifier
+                modifier = modifier
                     .height(imageSize)
                     .background(
                         brush = Brush.horizontalGradient(
@@ -56,9 +57,8 @@ fun ProductItem(product: Product) {
             ) {
                 AsyncImage(
                     model = product.image,
-                    // TODO: ajustar imagem do produto
                     contentDescription = null,
-                    Modifier
+                    modifier
                         .size(imageSize)
                         .offset(y = imageSize / 2)
                         .clip(shape = CircleShape)
@@ -67,8 +67,8 @@ fun ProductItem(product: Product) {
                     placeholder = painterResource(id = R.drawable.placeholder)
                 )
             }
-            Spacer(modifier = Modifier.height(imageSize / 2))
-            Column(Modifier.padding(16.dp)) {
+            Spacer(modifier = modifier.height(imageSize / 2))
+            Column(modifier.padding(16.dp)) {
                 Text(
                     text = product.name,
                     fontSize = 18.sp,
@@ -78,7 +78,7 @@ fun ProductItem(product: Product) {
                 )
                 Text(
                     text = product.price.toBrazilianCurrency(),
-                    Modifier.padding(top = 8.dp),
+                    modifier.padding(top = 8.dp),
                     fontSize = 14.sp,
                     fontWeight = FontWeight(400)
                 )

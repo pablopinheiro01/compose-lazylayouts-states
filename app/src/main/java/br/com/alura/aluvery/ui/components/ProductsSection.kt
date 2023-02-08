@@ -18,12 +18,13 @@ import br.com.alura.aluvery.ui.theme.AluveryTheme
 @Composable
 fun ProductsSection(
     title: String,
+    modifier: Modifier = Modifier,
     products: List<Product>
 ) {
     Column {
         Text(
             text = title,
-            Modifier.padding(
+            modifier.padding(
                 start = 16.dp,
                 end = 16.dp
             ),
@@ -31,7 +32,7 @@ fun ProductsSection(
             fontWeight = FontWeight(400)
         )
         LazyRow(
-            Modifier
+            modifier
                 .padding(
                     top = 8.dp
                 )
