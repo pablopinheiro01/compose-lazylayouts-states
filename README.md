@@ -14,4 +14,4 @@ https://www.alura.com.br/artigos/slot-api-utiliza-lo-criar-menus-aplicacoes-andr
 
 The results:
 
-![compose-states](https://user-images.githubusercontent.com/34134071/217833336-b01a4062-97f5-4108-a130-7b73e1a356c7.gif)
+![compose-states-slots-api](https://user-images.githubusercontent.com/34134071/217833469-b6be8a19-ca0f-4f10-87c7-78b4472cd283.gif)
