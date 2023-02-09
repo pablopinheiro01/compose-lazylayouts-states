@@ -1,6 +1,7 @@
 package br.com.alura.aluvery.sampledata
 
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
+import br.com.alura.aluvery.model.PartnerStores
 import br.com.alura.aluvery.model.Product
 import java.math.BigDecimal
 
@@ -69,4 +70,31 @@ val sampleSections = mapOf(
     "Promoções" to sampleProducts,
     "Doces" to sampleCandies,
     "Bebidas" to sampleDrinks
+)
+
+val samplePartners: List<PartnerStores> = listOf(
+    PartnerStores(
+        name = "Carrinho SuperMercado",
+        img = "https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
+    PartnerStores(
+        name = "Carrinho SuperMercado",
+        img = "https://images.pexels.com/photos/264547/pexels-photo-264547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
+    PartnerStores(
+        name = "Padaria",
+        img = "https://images.pexels.com/photos/1855214/pexels-photo-1855214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
+    PartnerStores(
+        name = "Floricultura",
+        img = "https://images.pexels.com/photos/2111192/pexels-photo-2111192.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
+    PartnerStores(
+        name = "Loja de Roupas",
+        img = "https://images.pexels.com/photos/102129/pexels-photo-102129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
+    PartnerStores(
+        name = "Hotéis",
+        img = "https://images.pexels.com/photos/237272/pexels-photo-237272.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    ),
 )

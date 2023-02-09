@@ -11,16 +11,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.alura.aluvery.model.Product
-import br.com.alura.aluvery.sampledata.sampleProducts
+import br.com.alura.aluvery.model.PartnerStores
+import br.com.alura.aluvery.sampledata.samplePartners
 import br.com.alura.aluvery.ui.theme.AluveryTheme
 
+//@Composable
+//fun PartnerSection(
+//    title: @Composable () -> Unit,
+//    content: @Composable () -> Unit,
+//    modifier:Modifier = Modifier
+//){
+//    Column(modifier) {
+//        title()
+//        content()
+//    }
+//
+//}
+
 @Composable
-fun ProductsSection(
-    title: String,
+fun PartnerSection(
+    title:String,
     modifier: Modifier = Modifier,
-    products: List<Product>
+    partners: List<PartnerStores>
 ) {
+
     Section(
         title = {
             Text(
@@ -29,36 +43,33 @@ fun ProductsSection(
                     start = 16.dp,
                     end = 16.dp
                 ),
-                fontSize = 20.sp,
-                fontWeight = FontWeight(400)
+                fontSize = 16.sp,
             )
         },
         content = {
             LazyRow(
-                modifier
-                    .padding(
-                        top = 8.dp
-                    )
+                modifier = modifier
+                    .padding(8.dp)
                     .fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                contentPadding = PaddingValues(horizontal = 16.dp)
-            ) {
-                items(products) { p ->
-                    ProductItem(product = p)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(horizontal = 8.dp)
+            ){
+                items(partners){ p ->
+                    PartnerStoresItem(item = p)
                 }
-
             }
+
         },
-        modifier = modifier
+        modifier,
     )
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun ProductsSectionPreview() {
+fun PartnerSectionsPreview() {
     AluveryTheme {
         Surface {
-            ProductsSection("Promoções", products = sampleProducts)
+            PartnerSection(title = "Lojas Parceiras", partners = samplePartners )
         }
     }
 }

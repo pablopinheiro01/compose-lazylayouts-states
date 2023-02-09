@@ -9,9 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.alura.aluvery.model.Product
+import br.com.alura.aluvery.sampledata.samplePartners
 import br.com.alura.aluvery.sampledata.sampleProducts
 import br.com.alura.aluvery.sampledata.sampleSections
 import br.com.alura.aluvery.ui.components.CardProductItem
+import br.com.alura.aluvery.ui.components.PartnerSection
 import br.com.alura.aluvery.ui.components.ProductsSection
 import br.com.alura.aluvery.ui.components.SearchTextField
 import br.com.alura.aluvery.ui.theme.AluveryTheme
@@ -77,7 +79,9 @@ fun HomeScreen(
                         expanded = true,
                     )
                 }
-
+            }
+            item{
+                PartnerSection(title = "Lojas Parceiras", partners = samplePartners)
             }
         }
     }
